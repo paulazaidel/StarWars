@@ -4,7 +4,7 @@
     {
         public FilmModel(string title, string director, string releaseDate)
         {
-            Title = title.ToLower();
+            Title = title;
             Director = director;
             ReleaseDate = releaseDate;
         }
