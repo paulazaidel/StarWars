@@ -51,7 +51,7 @@ namespace StarWars.Application.API.Controllers
             return Ok(planetDto);
         }
 
-        [HttpPost("{id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             await _service.Remove(id);

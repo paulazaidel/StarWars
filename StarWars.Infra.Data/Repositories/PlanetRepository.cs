@@ -2,6 +2,7 @@
 using StarWars.Domain.Entities;
 using StarWars.Domain.Interfaces;
 using StarWars.Infra.Data.Context;
+using System.Xml.Linq;
 
 namespace StarWars.Infra.Data.Repositories
 {
@@ -11,7 +12,7 @@ namespace StarWars.Infra.Data.Repositories
 
         public override async Task<List<Planet>> GetAll()
         {
-            return await Context.Planets
+            return await Context.Planets.Where(prop => prop.RemovedAt == null)
                 .AsNoTracking()
                 .Include(p => p.Terrains)
                 .Include(p => p.Films)
@@ -22,10 +23,10 @@ namespace StarWars.Infra.Data.Repositories
         public override async Task<Planet> GetById(int id)
         {
             return await Context.Planets
-                .Include(p => p.Terrains)
-                .Include(p => p.Films)
-                .Include(p => p.Climates)
-                .FirstOrDefaultAsync(p => p.Id == id);
+                .Include(prop => prop.Terrains)
+                .Include(prop => prop.Films)
+                .Include(prop => prop.Climates)
+                .FirstOrDefaultAsync(prop => prop.Id == id && prop.RemovedAt == null);
         }
 
         public async Task Update(Planet planet)
@@ -36,10 +37,10 @@ namespace StarWars.Infra.Data.Repositories
 
         public async Task<Planet?> FindByame(string name)
         {
-            return await Context.Planets.Where(value => value.Name == name)
-                .Include(p => p.Terrains)
-                .Include(p => p.Films)
-                .Include(p => p.Climates)
+            return await Context.Planets.Where(prop => prop.Name == name && prop.RemovedAt == null)
+                .Include(prop => prop.Terrains)
+                .Include(prop => prop.Films)
+                .Include(prop => prop.Climates)
                 .FirstOrDefaultAsync();
 
         }
