@@ -27,7 +27,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    SeedDataBase(app);
+    // SeedDataBase(app);
 
     app.UseSwagger();
     app.UseSwaggerUI();
