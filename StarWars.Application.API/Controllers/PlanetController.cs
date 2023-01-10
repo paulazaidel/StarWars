@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using StarWars.Application.API.Dtos;
 using StarWars.Domain.Services;
 
 namespace StarWars.Application.API.Controllers
@@ -8,9 +10,11 @@ namespace StarWars.Application.API.Controllers
     public class PlanetController : ControllerBase
     {
         private readonly IPlanetService _service;
+        public readonly IMapper _mapper;
 
-        public PlanetController(IPlanetService repository)
+        public PlanetController(IMapper mapper, IPlanetService repository)
         {
+            _mapper = mapper;
             _service = repository;
         }
 
@@ -18,8 +22,9 @@ namespace StarWars.Application.API.Controllers
         public async Task<IActionResult> Get()
         {
             var planets = await _service.GetAll();
+            var planetsDto = _mapper.Map<IEnumerable<PlanetDto>>(planets);
 
-            return Ok(planets);
+            return Ok(planetsDto);
         }
 
         [HttpGet("{id}")]
@@ -30,7 +35,8 @@ namespace StarWars.Application.API.Controllers
             if (planet == null)
                 return NotFound();
 
-            return Ok(planet);
+            var planetDto = _mapper.Map<PlanetDto>(planet);
+            return Ok(planetDto);
         }
 
         [HttpGet("search/{name}")]
@@ -41,7 +47,8 @@ namespace StarWars.Application.API.Controllers
             if (planet == null)
                 return NotFound();
 
-            return Ok(planet);
+            var planetDto = _mapper.Map<PlanetDto>(planet);
+            return Ok(planetDto);
         }
 
         [HttpPost("{id}")]

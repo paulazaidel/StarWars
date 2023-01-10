@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using StarWars.Application.API.AutoMapper;
 using StarWars.Domain.Interfaces;
 using StarWars.Domain.Services;
 using StarWars.Infra.Data;
@@ -19,6 +20,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
 
 builder.Services.AddTransient<SeedDataBase>();
 
