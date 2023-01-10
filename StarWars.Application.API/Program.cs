@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using StarWars.Domain.Interfaces;
+using StarWars.Infra.Data;
 using StarWars.Infra.Data.Context;
 using StarWars.Infra.Data.Repositories;
 
@@ -6,11 +8,13 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("SqliteConnectionString");
 
 // Add services to the container.
-builder.Services.AddSqlite<StarWarsContext>(connectionString);
+builder.Services.AddDbContext<StarWarsContext>(x => x.UseSqlite(connectionString));
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddTransient<SeedDataBase>();
 
 builder.Services.AddScoped<IClimateRepository, ClimateRepository>();
 builder.Services.AddScoped<IFilmRepository, FilmRepository>();
@@ -23,6 +27,8 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    SeedDataBase(app);
+
     app.UseSwagger();
     app.UseSwaggerUI();
 }
@@ -34,3 +40,17 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+void SeedDataBase(IHost app)
+{
+    var scopedFactory = app.Services.GetService<IServiceScopeFactory>();
+
+    using (var scope = scopedFactory.CreateScope())
+    {
+        var service = scope.ServiceProvider.GetService<SeedDataBase>();
+        service.SeedClimates();
+        service.SeedFilms();
+        service.SeedTerrains();
+        service.SeedPlanets();
+    }
+}
