@@ -1,7 +1,7 @@
-﻿using StarWars.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using StarWars.Domain.Entities;
 using StarWars.Domain.Interfaces;
 using StarWars.Infra.Data.Context;
-using System.Linq.Expressions;
 
 namespace StarWars.Infra.Data.Repositories
 {
@@ -9,14 +9,39 @@ namespace StarWars.Infra.Data.Repositories
     {
         public PlanetRepository(StarWarsContext context) : base(context) { }
 
-        public Task<IEnumerable<Planet>> Search(Expression<Func<Planet, bool>> predicate)
+        public override async Task<List<Planet>> GetAll()
         {
-            throw new NotImplementedException();
+            return await Context.Planets
+                .AsNoTracking()
+                .Include(p => p.Terrains)
+                .Include(p => p.Films)
+                .Include(p => p.Climates)
+                .ToListAsync();
         }
 
-        public Task Remove(Guid id)
+        public override async Task<Planet> GetById(int id)
         {
-            throw new NotImplementedException();
+            return await Context.Planets
+                .Include(p => p.Terrains)
+                .Include(p => p.Films)
+                .Include(p => p.Climates)
+                .FirstOrDefaultAsync(p => p.Id == id);
+        }
+
+        public async Task Update(Planet planet)
+        {
+            Context.Planets.Update(planet);
+            await SaveChanges();
+        }
+
+        public async Task<Planet?> FindByame(string name)
+        {
+            return await Context.Planets.Where(value => value.Name == name)
+                .Include(p => p.Terrains)
+                .Include(p => p.Films)
+                .Include(p => p.Climates)
+                .FirstOrDefaultAsync();
+
         }
     }
 }

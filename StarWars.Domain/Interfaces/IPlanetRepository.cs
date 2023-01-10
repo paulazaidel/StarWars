@@ -5,8 +5,7 @@ namespace StarWars.Domain.Interfaces
 {
     public interface IPlanetRepository : IRepository<Planet>
     {
-        Task<IEnumerable<Planet>> Search(Expression<Func<Planet, bool>> predicate);
-
-        Task Remove(Guid id);
+        Task<Planet?> FindByame(string name);
+        Task Update(Planet planet);
     }
 }
