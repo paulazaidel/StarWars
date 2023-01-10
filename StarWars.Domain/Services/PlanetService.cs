@@ -18,29 +18,49 @@ namespace StarWars.Domain.Services
 
         public async Task<Planet?> FindByame(string name)
         {
-            return await _repository.FindByame(name);
+            Logs.INFO($"[PlanetService] Getting planet by name {name}.");
+
+            var planet = await _repository.FindByame(name);
+
+            if (planet == null)
+                Logs.WARNING($"[PlanetService] Planet {name} not found.");
+
+            return planet;
         }
 
-        public async Task<Planet> Get(int id)
+        public async Task<Planet?> Get(int id)
         {
-            return await _repository.GetById(id);
+            var planet = await _repository.GetById(id);
+
+            if (planet == null)
+                Logs.WARNING($"[PlanetService] Planet id {id} not found.");
+
+            return planet;
         }
 
         public async Task<IEnumerable<Planet>> GetAll()
         {
-            return await _repository.GetAll();
+            var planets = await _repository.GetAll();
+
+            Logs.INFO($"[PlanetService] Getted {planets.Count} planets.");
+
+            return planets;
         }
 
         public async Task Remove(int id)
         {
             var planet = await _repository.GetById(id);
 
-            if (planet == null)
+            if (planet == null) 
+            {
+                Logs.WARNING($"[PlanetService] Planet id {id} not found to remove.");
                 return;
+            }
+
 
             planet.RemovedAt = DateTime.UtcNow;
 
-            _repository.Update(planet);
+            await _repository.Update(planet);
         }
     }
 }

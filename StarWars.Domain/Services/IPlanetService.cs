@@ -11,7 +11,7 @@ namespace StarWars.Domain.Services
 {
     public interface IPlanetService : IDisposable
     {
-        Task<Planet> Get(int id);
+        Task<Planet?> Get(int id);
         Task<IEnumerable<Planet>> GetAll();
         Task<Planet?> FindByame(string name);
         Task Remove(int id);

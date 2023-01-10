@@ -32,7 +32,7 @@ namespace StarWars.Infra.Data.Repositories
             return await DbSet.ToListAsync();
         }
 
-        public virtual async Task<TEntity> GetById(int id)
+        public virtual async Task<TEntity?> GetById(int id)
         {
             return await DbSet.FindAsync(id);
         }

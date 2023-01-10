@@ -1,0 +1,9 @@
+[INFO] 10/01/2023 21:42:36 [PlanetRepository] Getting all planets.
+[INFO] 10/01/2023 21:42:37 [PlanetService] Getted 58 planets.
+[INFO] 10/01/2023 21:42:59 [PlanetRepository] Getting planet by id = 3.
+[INFO] 10/01/2023 21:43:52 [PlanetRepository] Getting planet by id = 5.
+[INFO] 10/01/2023 21:43:52 [PlanetRepository] Updating planet by id = 5.
+[INFO] 10/01/2023 21:44:56 [PlanetService] Getting planet by name Yavin IV.
+[INFO] 10/01/2023 21:44:56 [PlanetRepository] Getting planet by name = Yavin IV
+[INFO] 10/01/2023 21:45:00 [PlanetRepository] Getting planet by id = 5.
+[WARNING] 10/01/2023 21:45:00 [PlanetService] Planet id 5 not found to remove.
