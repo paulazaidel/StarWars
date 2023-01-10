@@ -19,7 +19,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(prop => prop.EnableAnnotations());
 builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
 
 builder.Services.AddTransient<SeedDataBase>();
