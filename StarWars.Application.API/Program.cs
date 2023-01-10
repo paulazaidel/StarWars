@@ -24,10 +24,7 @@ builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
 
 builder.Services.AddTransient<SeedDataBase>();
 
-builder.Services.AddScoped<IClimateRepository, ClimateRepository>();
-builder.Services.AddScoped<IFilmRepository, FilmRepository>();
 builder.Services.AddScoped<IPlanetRepository, PlanetRepository>();
-builder.Services.AddScoped<ITerrainRepository, TerrainRepository>();
 builder.Services.AddScoped<IPlanetService, PlanetService>();
 
 
