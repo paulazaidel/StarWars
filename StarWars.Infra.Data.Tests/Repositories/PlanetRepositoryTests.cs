@@ -69,9 +69,6 @@ namespace StarWars.Infra.Data.Tests.Repositories
         [Fact]
         public async void GetAll_Success()
         {
-            // Arrange
-            var name = "Test";
-
             // Act
             var result = await _planetRepository.GetAll();
 

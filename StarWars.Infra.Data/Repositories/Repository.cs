@@ -5,12 +5,12 @@ using StarWars.Infra.Data.Context;
 
 namespace StarWars.Infra.Data.Repositories
 {
-    public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : EntityBase, new()
+    public abstract class Repository<TEntity> : IDisposable, IRepository<TEntity> where TEntity : EntityBase, new()
     {
         protected readonly StarWarsContext Context;
         protected readonly DbSet<TEntity> DbSet;
 
-        public Repository(StarWarsContext context)
+        protected Repository(StarWarsContext context)
         {
             Context = context;
             DbSet = context.Set<TEntity>();

@@ -3,7 +3,6 @@ using StarWars.Domain;
 using StarWars.Domain.Entities;
 using StarWars.Domain.Interfaces;
 using StarWars.Infra.Data.Context;
-using System.Numerics;
 
 namespace StarWars.Infra.Data.Repositories
 {

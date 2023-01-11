@@ -119,8 +119,11 @@ namespace StarWars.Infra.Data
 
             foreach (var value in jToken)
             {
-                var planet = (string)value["Planet"];
-                var terrain = (string)value["Terrain"];
+                var planet = value["Planet"]?.ToString();
+                var terrain = value["Terrain"]?.ToString();
+
+                if (planet == null || terrain == null)
+                    continue;
 
                 if (terrains.ContainsKey(planet))
                 {
@@ -143,8 +146,12 @@ namespace StarWars.Infra.Data
 
             foreach (var value in jToken)
             {
-                var planet = (string)value["Planet"];
-                var film = (string)value["Film"];
+
+                var planet = value["Planet"]?.ToString();
+                var film = value["Film"]?.ToString();
+
+                if (planet == null || film == null)
+                    continue;
 
                 if (films.ContainsKey(planet))
                 {
