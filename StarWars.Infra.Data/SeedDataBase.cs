@@ -9,18 +9,24 @@ namespace StarWars.Infra.Data
     {
         private readonly StarWarsContext _context;
 
-        private readonly string _path;
+        private readonly string? _path;
 
         public SeedDataBase(StarWarsContext context)
         {
             _context = context;
-            _path = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
+            _path = Directory.GetParent(Directory.GetCurrentDirectory())?.FullName;
+
+            if (_path == null)
+                throw new ArgumentNullException(_path);
         }
 
         public void SeedClimates()
         {
             var climateData = File.ReadAllText($"{_path}\\climates.json");
             var climates = JsonConvert.DeserializeObject<List<Climate>>(climateData);
+
+            if (climates == null) return; 
+
             foreach (var climate in climates)
             {
                 _context.Climates.Add(climate);
@@ -33,6 +39,9 @@ namespace StarWars.Infra.Data
         {
             var filmData = File.ReadAllText($"{_path}\\films.json");
             var films = JsonConvert.DeserializeObject<List<Film>>(filmData);
+
+            if (films == null) return;
+
             foreach (var film in films)
             {
                 _context.Films.Add(film);
@@ -44,6 +53,9 @@ namespace StarWars.Infra.Data
         {
             var terrainData = File.ReadAllText($"{_path}\\terrains.json");
             var terrains = JsonConvert.DeserializeObject<List<Terrain>>(terrainData);
+
+            if (terrains == null) return;
+
             foreach (var terrain in terrains)
             {
                 _context.Terrains.Add(terrain);
@@ -60,6 +72,8 @@ namespace StarWars.Infra.Data
             var planetTerrains = _GetPlanetTerrains();
             var planetFilms = _GetPlanetFilms();
             var planetClimates = _GetPlanetClimates();
+
+            if (planets == null) return;
 
             foreach (var planet in planets)
             {
@@ -153,8 +167,11 @@ namespace StarWars.Infra.Data
 
             foreach (var value in jToken)
             {
-                var planet = (string)value["Planet"];
-                var climate = (string)value["Climate"];
+                var planet = value["Planet"]?.ToString();
+                var climate = value["Climate"]?.ToString();
+
+                if (planet == null || climate == null)
+                    continue;
 
                 if (climates.ContainsKey(planet))
                 {

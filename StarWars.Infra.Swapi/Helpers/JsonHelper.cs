@@ -14,7 +14,7 @@ namespace StarWars.Infra.Swapi.Helpers
             var path = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.Parent?.FullName;
 
             if (path == null)
-                throw new ArgumentNullException(nameof(path));
+                throw new ArgumentNullException(path);
 
             string filePath = Path.Combine(path, fileName);
 

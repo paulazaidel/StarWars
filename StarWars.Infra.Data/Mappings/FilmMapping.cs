@@ -14,7 +14,7 @@ namespace StarWars.Infra.Data.Mappings
                 .IsRequired();
 
             builder.HasIndex(value => value.Title)
-                .IsUnique(); ;
+                .IsUnique();
 
             builder.HasMany(value => value.Planets)
                 .WithMany(value => value.Films)
