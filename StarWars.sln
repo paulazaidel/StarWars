@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWars.Infra.Swapi", "Sta
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWars.Domain", "StarWars.Domain\StarWars.Domain.csproj", "{753F680B-E49B-4866-83A8-17B8EE0852D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWars.Infra.Data", "StarWars.Infra.Data\StarWars.Infra.Data.csproj", "{02FFAC75-58A4-40C4-BA16-A60BCE54C1C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarWars.Infra.Data", "StarWars.Infra.Data\StarWars.Infra.Data.csproj", "{02FFAC75-58A4-40C4-BA16-A60BCE54C1C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWars.Domain.Tests", "StarWars.Domain.Tests\StarWars.Domain.Tests.csproj", "{216D70D0-7D54-4395-BB56-636E449A7021}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{02FFAC75-58A4-40C4-BA16-A60BCE54C1C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02FFAC75-58A4-40C4-BA16-A60BCE54C1C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02FFAC75-58A4-40C4-BA16-A60BCE54C1C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{216D70D0-7D54-4395-BB56-636E449A7021}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{216D70D0-7D54-4395-BB56-636E449A7021}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{216D70D0-7D54-4395-BB56-636E449A7021}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{216D70D0-7D54-4395-BB56-636E449A7021}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 		{BD894420-7B3C-433D-9CA6-3254580FA97E} = {E64FAEA6-57B3-4E75-8513-749E339F811A}
 		{753F680B-E49B-4866-83A8-17B8EE0852D6} = {956ADB36-A47A-4C42-A6DD-7FF39AFE541F}
 		{02FFAC75-58A4-40C4-BA16-A60BCE54C1C4} = {E64FAEA6-57B3-4E75-8513-749E339F811A}
+		{216D70D0-7D54-4395-BB56-636E449A7021} = {956ADB36-A47A-4C42-A6DD-7FF39AFE541F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {905FE4C4-82D8-49BC-A672-24AD8F999A70}
