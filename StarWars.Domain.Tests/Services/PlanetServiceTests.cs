@@ -51,7 +51,7 @@ namespace StarWars.Domain.Tests.Services
         }
 
         [Fact]
-        public async void FindByame_Success()
+        public async void FindByName_Success()
         {
             // Arrange
             var id = 1;
@@ -59,18 +59,18 @@ namespace StarWars.Domain.Tests.Services
             var planet = (new Planet() { Id = id, Name = name });
 
             var planetRepository = new Mock<IPlanetRepository>();
-            planetRepository.Setup(props => props.FindByame(name))
+            planetRepository.Setup(props => props.FindByName(name))
                .Returns(Task.FromResult(planet));
 
             var planetService = new PlanetService(planetRepository.Object);
 
             // Act
-            var result = await planetService.FindByame(name);
+            var result = await planetService.FindByName(name);
 
             // Assert
             Assert.NotNull(result);
             Assert.Equal(planet.Name, name);
-            planetRepository.Verify(r => r.FindByame(name), Times.Once);
+            planetRepository.Verify(r => r.FindByName(name), Times.Once);
         }
 
         [Fact]

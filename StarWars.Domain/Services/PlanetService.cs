@@ -16,11 +16,11 @@ namespace StarWars.Domain.Services
             _repository?.Dispose();
         }
 
-        public async Task<Planet?> FindByame(string name)
+        public async Task<Planet?> FindByName(string name)
         {
             Logs.INFO($"[PlanetService] Getting planet by name {name}.");
 
-            var planet = await _repository.FindByame(name);
+            var planet = await _repository.FindByName(name);
 
             if (planet == null)
                 Logs.WARNING($"[PlanetService] Planet {name} not found.");

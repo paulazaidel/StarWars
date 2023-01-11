@@ -42,7 +42,7 @@ namespace StarWars.Infra.Data.Repositories
             await SaveChanges();
         }
 
-        public async Task<Planet?> FindByame(string name)
+        public async Task<Planet?> FindByName(string name)
         {
             Logs.INFO($"[PlanetRepository] Getting planet by name = {name}");
 

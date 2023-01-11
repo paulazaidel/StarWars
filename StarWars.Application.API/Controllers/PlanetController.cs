@@ -60,7 +60,7 @@ namespace StarWars.Application.API.Controllers
         [SwaggerResponse(404, "Not Found")]
         public async Task<IActionResult> Get(string name)
         {
-            var planet = await _service.FindByame(name);
+            var planet = await _service.FindByName(name);
 
             if (planet == null)
                 return NotFound();

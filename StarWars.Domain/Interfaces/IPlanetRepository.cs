@@ -5,7 +5,7 @@ namespace StarWars.Domain.Interfaces
 {
     public interface IPlanetRepository : IRepository<Planet>
     {
-        Task<Planet?> FindByame(string name);
+        Task<Planet?> FindByName(string name);
         Task Update(Planet planet);
     }
 }

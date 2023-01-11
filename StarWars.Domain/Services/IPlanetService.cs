@@ -13,7 +13,7 @@ namespace StarWars.Domain.Services
     {
         Task<Planet?> Get(int id);
         Task<IEnumerable<Planet>> GetAll();
-        Task<Planet?> FindByame(string name);
+        Task<Planet?> FindByName(string name);
         Task Remove(int id);
     }
 }
