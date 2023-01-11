@@ -15,7 +15,7 @@ namespace StarWars.Domain.Tests.Services
             var planet = (new Planet() { Id = id });
             var planetRepository = new Mock<IPlanetRepository>();
             planetRepository.Setup(props => props.GetById(id))
-               .Returns(Task.FromResult(planet));
+               .ReturnsAsync(planet);
 
             var planetService = new PlanetService(planetRepository.Object);
 
@@ -37,7 +37,7 @@ namespace StarWars.Domain.Tests.Services
 
             var planetRepository = new Mock<IPlanetRepository>();
             planetRepository.Setup(props => props.GetAll())
-               .Returns(Task.FromResult(planets));
+               .ReturnsAsync(planets);
 
             var planetService = new PlanetService(planetRepository.Object);
 
@@ -60,7 +60,7 @@ namespace StarWars.Domain.Tests.Services
 
             var planetRepository = new Mock<IPlanetRepository>();
             planetRepository.Setup(props => props.FindByName(name))
-               .Returns(Task.FromResult(planet));
+               .ReturnsAsync(planet);
 
             var planetService = new PlanetService(planetRepository.Object);
 
@@ -83,7 +83,7 @@ namespace StarWars.Domain.Tests.Services
 
             var planetRepository = new Mock<IPlanetRepository>();
             planetRepository.Setup(props => props.GetById(id))
-               .Returns(Task.FromResult(planet));
+               .ReturnsAsync(planet);
             planetRepository.Setup(props => props.Update(planet));
 
             var planetService = new PlanetService(planetRepository.Object);
