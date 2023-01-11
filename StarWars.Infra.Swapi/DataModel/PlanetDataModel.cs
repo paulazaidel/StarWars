@@ -6,8 +6,8 @@
         {
             Name = name;
             Url = url;
-            _climates = climate;
-            _terrains = terrain;
+            climates = climate;
+            terrains = terrain;
         }
 
         public string Name { get; set; }
@@ -15,23 +15,23 @@
         public DateTime Created_at { get; set; }
         public DateTime Updated_at { get; set; }
 
-        private string _climates;
+        private readonly string climates;
 
         public IEnumerable<string> Climates
         {
             get
             {
-                return _climates.Split(", ");
+                return climates.Split(", ");
             }
         }
 
-        private string _terrains;
+        private readonly string terrains;
 
         public IEnumerable<string> Terrains
         {
             get
             {
-                return _terrains.Split(", ");
+                return terrains.Split(", ");
             }
         }
     }

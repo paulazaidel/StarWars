@@ -11,7 +11,11 @@ namespace StarWars.Infra.Swapi.Helpers
     {
         public static void SaveJsonFile<T>(IEnumerable<T> data, string fileName)
         {
-            var path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName;
+            var path = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.Parent?.FullName;
+
+            if (path == null)
+                throw new ArgumentNullException(nameof(path));
+
             string filePath = Path.Combine(path, fileName);
 
             using (StreamWriter file = File.CreateText(filePath))

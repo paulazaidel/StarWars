@@ -17,7 +17,7 @@ namespace StarWars.Infra.Swapi.UseCases
 
             }
 
-            return films; ;
+            return films;
         }
     }
 }
